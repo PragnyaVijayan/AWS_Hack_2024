@@ -31,6 +31,14 @@ def summarize_text(text, max_length=150):
     summary = summarizer(text, max_length=max_length, min_length=50, do_sample=False)
     return summary[0]['summary_text']  # Return the summarized text
 
+def price_extract(text):
+    # Regex to find prices (e.g., $1000, €500, etc.)
+    pattern = r'\b(?:\$|€|£|\b\d{1,3}(?:,\d{3})*)(?:\.\d{2})?\b'
+    prices = re.findall(pattern, text)
+    
+    # Return the first found price or "Not found" if none is found
+    return prices[1]
+  
 def summarize_contract(file_path):
     """
     Summarizes contract by section.
@@ -44,6 +52,8 @@ def summarize_contract(file_path):
         summary = summarize_text(content)  # Summarize section content
         print("Summary:", summary)
         print("-" * 40)
+        price = price_extract(content)
+        print("Price:", price)
 
 # Path to your contract file
 contract_file = "sample.txt"  # Specify file path
