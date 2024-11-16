@@ -1,0 +1,22 @@
+Freelance Agreement
+
+This Agreement is made on November 16, 2024, by and between Freelancer and Tech Innovations LLC (“Client”).
+	1.	Scope of Work
+Freelancer will provide the following services: Developing a custom web application for managing client data and improving workflow efficiency.
+	2.	Payment
+Client will to pay Freelancer $500 for services. Payment will be made upon completion of 3 milestones:
+	•	50% upon project start
+	•	25% after first demo
+	•	25% upon final delivery.
+	3.	Timeline
+The work will be completed by December 31, 2024. Delays must be communicated in writing.
+	4.	Confidentiality
+Freelancer agrees to keep all Client information confidential.
+	5.	Ownership
+Upon final payment, all work will be transferred to the Client, excluding any third-party software or assets used.
+	6.	Revisions
+Client is entitled to 3 revisions. Additional revisions will be billed at $50 per hour.
+	7.	Termination
+Either party can terminate this agreement with two weeks’ notice, with compensation for completed work up to that point.
+	8.	Governing Law
+This Agreement will be governed by the laws of California.
