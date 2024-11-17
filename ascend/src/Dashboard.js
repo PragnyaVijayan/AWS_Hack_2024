@@ -82,7 +82,7 @@ const AnalyticsGraphs = () => {
         const url = URL.createObjectURL(blob); 
         setSalaryPercentileImgUrl(url); 
       })
-      .catch((error) => alert('Error fetching the graph:', error));
+      .catch((error) => console.log('Error fetching the graph:', error));
   };
 
   useEffect(() => {
@@ -122,7 +122,9 @@ function ContractMainPoints() {
 
   // Convert the text to an array of sentences
   function convertToList(text) {
-    const sentences = text.split('.').map(sentence => sentence.trim()).filter(Boolean);
+    const sentences = text.split('.')
+      .map(sentence => sentence.trim())
+      .filter(sentence => sentence.length >= 3);
     return sentences;
   }
 
@@ -192,7 +194,7 @@ function DashboardPage() {
       <ContractHighlights />
       <AnalyticsGraphs />
       <ContractMainPoints />
-      <NegotiationPoints />
+      {/* <NegotiationPoints /> */}
       <BottomBanner />
     </div>
   );
