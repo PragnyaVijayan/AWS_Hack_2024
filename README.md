@@ -5,10 +5,10 @@ by Tiffany Nguyen, Lindsey Leong, Pragnya Vijayan, Maddie Follosco, Irene Chang,
 Imagine a world where freelancers are empowered to focus on their craft, while AI takes care of the arduous tasks of analyzing contracts, understanding market trends, and negotiating optimal terms. Ascend levels the playing field, ensuring freelancers are not undervalued while fostering transparency and efficiency in client negotiations.
 
 ## What it does
-### Ascend's key features include:
-1. Market Rate Analysis: Our product will compare the freelancer’s requested rates against market data so the user can gauge how well they're being paid. This includes a summary section that uses Hugging Face's bart-large-cnn to pull main points from lengthy contracts the user can upload, a graph that pulls salary data for the user's occupation and location from CareerOneStop's API and compares that to what the user is being offered, and a graph that visualizes the user's current pay with their pay history. When the user uses our product, their data is stored in AWS S3.
+### Ascend's key features include
+1. **Market Rate Analysis**: Our product will compare the freelancer’s requested rates against market data so the user can gauge how well they're being paid. This includes a summary section that uses Hugging Face's bart-large-cnn to pull main points from lengthy contracts the user can upload, a graph that pulls salary data for the user's occupation and location from CareerOneStop's API and compares that to what the user is being offered, and a graph that visualizes the user's current pay with their pay history. When the user uses our product, their data is stored in AWS S3.
 
-2. Support Real-Time Negotiation: The AI will initiate conversations with clients and suggest reasonable terms or counteroffers through the freelancer's email. GPT-3 powers chat-based interactions and automatically drafts as a response to emails from interested clients to cut down time for negotiation, though the user can review drafts before sending the messages themselves.
+2. **Support Real-Time Negotiation**: The AI will initiate conversations with clients and suggest reasonable terms or counteroffers through the freelancer's email. GPT-3 powers chat-based interactions and automatically drafts as a response to emails from interested clients to cut down time for negotiation, though the user can review drafts before sending the messages themselves.
 
 ### Workflow
 1. Freelancer Input: The freelancer provides data about themselves including their occupation, their location, the expected rate, and any contract terms they'd like to discuss.
@@ -16,15 +16,15 @@ Imagine a world where freelancers are empowered to focus on their craft, while A
 3. Data Visualization Dashboard: Using the data the user provided about their job, location, and contract terms, AI summarizes the proposed contract for the user to look over and we pulls historical data from the CareerOneStop API to establish baseline market rates at various percentiles in the user's state. 
 
 ## How we built it
--** React JS** for our frontend
+- **React JS** for our frontend
 - **Python** and **Flask** for our backend.
 - **Amazon S3** for our database
 - AI
-  - **Hugging Face **to parse/summarize contracts
+  - **Hugging Face**to parse/summarize contracts
   - **GPT-3** to draft negotiation emails
   - **Sagemaker** for personalized market analysis
 - Data visualization
-  - plots using **matplotlib**
+  - Plots using **matplotlib**
   - Data from the **CareerOneStop API**
 - **Figma** for design
 
@@ -46,3 +46,5 @@ You can find a full demo of Ascend [here](https://youtu.be/lm50RP4OufU)!
 ## Summary
 <img height="275" alt="Purpose" src="https://github.com/user-attachments/assets/0fc62640-7cf7-461a-ad2f-57e4eeb2e511">
 <img height="275" alt="Workflow" src="https://github.com/user-attachments/assets/f2eafb58-8539-4c16-99d3-06ce5505653c">
+<img height="275" alt="Tech Stack" src="https://github.com/user-attachments/assets/e681e8b5-5afc-4ebf-b1b4-94f467459ceb">
+<img height="275" alt="Team" src="https://github.com/user-attachments/assets/0f69dbb3-c519-4de9-8a7a-480aba33708f">
