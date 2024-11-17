@@ -40,11 +40,11 @@ Even though this hackathon has come to an end, we're definitely not done with As
 ## Video Demo
 You can find a full demo of Ascend [here](https://youtu.be/lm50RP4OufU)!
 
-<img height="350" alt="Ascend home page" src="https://github.com/user-attachments/assets/d09e2688-3504-4edf-820d-810527be9c57">
-<img height="350" alt="Data visualization" src="https://github.com/user-attachments/assets/00ff11c2-1b04-49f5-b93e-8e96e3128cb2">
+<img height="300" alt="Ascend home page" src="https://github.com/user-attachments/assets/d09e2688-3504-4edf-820d-810527be9c57">
+<img height="300" alt="Data visualization" src="https://github.com/user-attachments/assets/00ff11c2-1b04-49f5-b93e-8e96e3128cb2">
 
 ## Summary
-<img height="275" alt="Purpose" src="https://github.com/user-attachments/assets/0fc62640-7cf7-461a-ad2f-57e4eeb2e511">
-<img height="275" alt="Workflow" src="https://github.com/user-attachments/assets/f2eafb58-8539-4c16-99d3-06ce5505653c">
-<img height="275" alt="Tech Stack" src="https://github.com/user-attachments/assets/e681e8b5-5afc-4ebf-b1b4-94f467459ceb">
-<img height="275" alt="Team" src="https://github.com/user-attachments/assets/0f69dbb3-c519-4de9-8a7a-480aba33708f">
+<img width="49%" alt="Purpose" src="https://github.com/user-attachments/assets/0fc62640-7cf7-461a-ad2f-57e4eeb2e511">
+<img width="49%" alt="Workflow" src="https://github.com/user-attachments/assets/f2eafb58-8539-4c16-99d3-06ce5505653c">
+<img width="49%" alt="Tech Stack" src="https://github.com/user-attachments/assets/e681e8b5-5afc-4ebf-b1b4-94f467459ceb">
+<img width="49%" alt="Team" src="https://github.com/user-attachments/assets/0f69dbb3-c519-4de9-8a7a-480aba33708f">
