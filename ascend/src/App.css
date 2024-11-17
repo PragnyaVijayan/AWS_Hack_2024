@@ -121,13 +121,12 @@ button:hover {
 /* What's Ascend */
 .WhatsAscendBox {
   margin-top: 100px; 
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 125px;
+  margin-right: 125px;
   z-index: 2;
   border: 10px solid white;
   border-bottom: none;
   padding: 50px;
-  max-width: 80%; 
   text-align: left;
   display: block;
 }
@@ -161,13 +160,12 @@ button:hover {
 
 .CreatorsBox {
   margin-top: 0px; 
-  margin-left: auto;
-  margin-right: auto;
+  margin-left: 125px;
+  margin-right: 125px;
   z-index: 2;
   border: 10px solid white;
   border-top: none;
   padding: 50px;
-  max-width: 80%; 
   text-align: left;
   display: block;
   padding-bottom: 75px;
@@ -225,9 +223,59 @@ button:hover {
 /* Side pencil */
 .SidePencil{
   position: absolute;
-  right: 25px;
+  right: 30px;
   top: 800px;
   width: 70px;
   height: auto;
   z-index: 40;
+}
+
+/* ENTER INFO PAGE */
+.EnterInfo {
+  margin-top: 69px;
+  padding: 75px;
+  background-image: linear-gradient(to bottom, #003839, black);
+}
+
+.EnterInfo h1{
+  color: white;
+  font-weight: 700;
+  font-size: 75px;
+}
+
+.EnterInfo h2{
+  color: white;
+  font-weight: 500;
+  font-size: 55px;
+  display: inline-block;
+  margin-bottom: 0px;
+}
+
+.blankText{
+  color: black;
+  background-color: white;
+  padding: 5px 10px;
+}
+
+.userInput{
+  margin: 0px 15px;
+  background-color: white;
+  font-weight: 500;
+  font-size: 55px;
+  border-radius: 0px;
+  padding: 10px;
+  font-size: 55px;
+}
+
+.jobInput{
+  width: 300px;
+}
+.yearsInput{
+  width: 75px;
+}
+.skillInput{
+  width: 400px;
+}
+.salaryInput{
+  width: 225px;
 }
