@@ -48,7 +48,7 @@ button:hover {
   
   font-family: "Host Grotesk", Arial;
   font-weight: 800;
-  font-size: 20px;
+  font-size: 25px;
   text-decoration: none;
 }
 
@@ -61,6 +61,18 @@ button:hover {
   margin-left: 20px;
   height: 65%;
   width: auto;
+}
+
+.messagesBtn{
+  margin-left: auto;
+}
+
+.MessagesIcon{
+  background-color: white;
+  color: #27AA83;
+  padding: 2px 7px;
+  border-radius: 10px;
+  margin-left: 15px;
 }
 
 /* Bottom Banner */
