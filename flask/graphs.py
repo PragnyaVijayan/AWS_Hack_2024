@@ -3,10 +3,12 @@ import matplotlib
 import matplotlib.pyplot as plt
 import requests
 from flask import Flask, send_file, request, jsonify
+from flask_cors import CORS
 
 matplotlib.use('Agg')  # Use non-interactive backend
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/line_graph')
 def plot_graph():
@@ -18,7 +20,7 @@ def plot_graph():
     ax.set_facecolor('black')
 
     # Set plot titles
-    ax.set_title('Awesome Trends', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold'})
+    ax.set_title('Awesome Trends', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold', 'family': 'arial'})
     ax.set_xlabel('X Axis', color='white') 
     ax.set_ylabel('Y Axis', color='white')
 
@@ -83,7 +85,7 @@ def bar_graph():
     ax.set_facecolor('black')
 
     # Set plot titles
-    ax.set_title(f'Salary for {occupation}', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold'})
+    ax.set_title(f'Salary for {occupation}', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold', 'family': 'arial'})
     ax.set_xlabel('Percentile', color='white', fontweight='bold')
     ax.set_ylabel('Rate ($ per hour)', color='white', fontweight='bold')
 

@@ -27,7 +27,7 @@ function EnterInfo() {
   </div>;
 }
 
-function App() {
+function EnterInfoPage() {
   return (
     <div className="App">
       <NavBar />
@@ -37,4 +37,4 @@ function App() {
   );
 }
 
-export default App;
+export default EnterInfoPage;
