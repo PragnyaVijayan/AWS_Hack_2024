@@ -51,5 +51,57 @@ def plot_graph():
     # Serve the image as a response
     return send_file(img, mimetype='image/png')
 
+
+@app.route('/bar_graph')
+def bar_graph():
+    # BAR GRAPH
+    fig, ax = plt.subplots()
+
+    # Make background black
+    fig.patch.set_facecolor('black')
+    ax.set_facecolor('black')
+
+    # Set plot titles
+    ax.set_title('Awesome Trends', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold'})
+    ax.set_xlabel('X Axis', color='white')
+    ax.set_ylabel('Y Axis', color='white')
+
+    # Change axis colors
+    ax.tick_params(axis='both', colors='white')
+    ax.xaxis.label.set_color('white')
+    ax.yaxis.label.set_color('white')
+
+    ax.spines['top'].set_color('white')
+    ax.spines['top'].set_linewidth(2)
+    ax.spines['right'].set_color('white')
+    ax.spines['right'].set_linewidth(2)
+    ax.spines['left'].set_color('white')
+    ax.spines['left'].set_linewidth(2)
+    ax.spines['bottom'].set_color('white')
+    ax.spines['bottom'].set_linewidth(2)
+
+    ax.grid(color='white')
+
+    # Data for the bar graph
+    x = [1, 2, 3, 4]
+    y1 = [1, 4, 9, 16]
+    y2 = [1, 8, 3, 15]
+
+    # Plot bars for data1 and data2
+    ax.bar(x, y1, color='#27AA83', label="data1", width=0.3, align='center')
+    ax.bar([i + 0.3 for i in x], y2, color='#E69292', label="data2", width=0.3, align='center')
+
+    # Add a legend
+    plt.legend()
+
+    # Save plot to a BytesIO object
+    img = io.BytesIO()
+    plt.savefig(img, format='png')
+    img.seek(0)
+    plt.close()
+
+    # Serve the image as a response
+    return send_file(img, mimetype='image/png')
+
 if __name__ == '__main__':
     app.run(debug=True)
