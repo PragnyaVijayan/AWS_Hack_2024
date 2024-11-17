@@ -1,6 +1,7 @@
 // import React.
 import './App.css';
 import NavBar from './Components/Navbar';
+import BottomBanner from './Components/BottomBanner';
 import paperImg from './Assets/Home/paper graphics.png';
 import pencilImg from './Assets/Home/sharp ver.png';
 import capyImg from './Assets/Home/capy.png';
@@ -97,6 +98,7 @@ function App() {
       <WhatsAscend />
       <Creators />
       <SidePencil />
+      <BottomBanner />
     </div>
   );
 }

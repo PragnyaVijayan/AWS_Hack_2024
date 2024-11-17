@@ -1,5 +1,6 @@
 import './App.css';
 import NavBar from './Components/Navbar';
+import BottomBanner from './Components/BottomBanner';
 import sidePencilImg from './Assets/Home/logo stretch.png';
 
 function EnterInfo() {
@@ -31,6 +32,7 @@ function App() {
     <div className="App">
       <NavBar />
       <EnterInfo />
+      <BottomBanner />
     </div>
   );
 }
