@@ -61,7 +61,7 @@ function Creators(){
         <CreatorCard 
           image={capyImg}
           name="Lindsey Leong"
-          role="design"
+          role="design/backend"
         />
         <CreatorCard 
           image={capyImg}

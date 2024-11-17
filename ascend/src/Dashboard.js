@@ -135,11 +135,17 @@ function ContractMainPoints() {
       const data = await response.json(); // Parse the response body as JSON
 
       // Parse summary data
-      const servicesList = convertToList(data.services);
-      const milestonesList = convertToList(data.milestones);
+      let allPoints = [];
+
+      for (const key in data) {
+        if (data.hasOwnProperty(key)) {
+          const list = convertToList(data[key]);
+          allPoints = [...allPoints, ...list];
+        }
+      }
 
       // Merge the two lists and set the points state
-      setPoints([...servicesList, ...milestonesList]); // Using spread operator to combine both arrays
+      setPoints(allPoints);
     } catch (error) {
       alert('Error fetching summary:', error);
     }
@@ -152,8 +158,9 @@ function ContractMainPoints() {
 
   return (
     <div className="ContractMainPoints">
-      <h1>Contract Verdict:</h1>
-      <h1>not good</h1>
+      <h1>Contract Summary:</h1>
+      {/* <h1>Contract Verdict:</h1>
+      <h1>not good</h1> */}
       <div className="Points">
         <ul>
           {points.map((curPoint, index) => (

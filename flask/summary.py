@@ -52,25 +52,17 @@ s3_client = boto3.client(
 )
 
 @app.route("/summarize", methods=["POST"])
-# def summarize():
-#     summaries = {"summary": "test"}  # Example JSON data
-
-#     summaries_json = json.dumps(summaries)
-    
-#     try:
-#         s3_client.put_object(Bucket="inrixhack2024", Key="ContractSummary.json", Body=summaries_json)
-#         return jsonify({"message": "Data uploaded successfully"}), 200
-#     except Exception as e:
-#         return jsonify({"error": str(e)}), 500
-
 def summarize_contract():
     """
     Endpoint to summarize contract.
     """
+    print("test1")
     if "file" not in request.files:
         return jsonify({"error": "No file provided"}), 400
 
     file = request.files["file"]
+
+    print("test2")
 
     try:
         # Extract text from PDF
@@ -78,6 +70,8 @@ def summarize_contract():
         
         # Extract sections
         sections = extract_sections(text)
+
+        print("test3")
         
         # Summarize sections
         summaries = {}
@@ -85,6 +79,8 @@ def summarize_contract():
             summaries[heading] = summarize_text(content)
 
         print(summaries)
+
+        print("test4")
 
         # Convert the summaries dictionary to a JSON string
         summaries_json = json.dumps(summaries)
