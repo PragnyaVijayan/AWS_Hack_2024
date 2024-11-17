@@ -1,9 +1,25 @@
 from transformers import pipeline  # Initialize summarization pipeline
 import re  # Import regex module for text processing
+import PyPDF2
 
 # Initialize the summarization pipeline
-summarizer = pipeline("summarization")
+summarizer = pipeline("summarization", model="facebook/bart-large-cnn")
+def extract_pdf(file_path):
+  with open(file_path, 'rb') as file:
+      pdf = PyPDF2.PdfReader(file)
+      num_pages = len(pdf.pages)
+      all_text = ""
+      for page_num in range(num_pages):
+          page = pdf.pages[page_num]
+          text = page.extract_text()
+          #print(text)
+          # Clean text: remove newlines and extra spaces
+          clean = re.sub(r'\s+', ' ', text).strip()
+            
+          all_text += clean + " "  # Add a space between pages
 
+      return all_text
+    
 def extract_sections(file_path):
     """
     Extract contract sections using regex.
