@@ -3,6 +3,7 @@ import NavBar from './Components/Navbar';
 import BottomBanner from './Components/BottomBanner';
 import sidePencilImg from './Assets/Home/logo stretch.png'
 import React, { useState } from "react";
+import axios from "axios";
 
 function SidePencil() {
   return (
@@ -18,9 +19,51 @@ function EnterInfo() {
   const [stateInputVal, setStateInputVal] = useState("");
   const [pastSalaryInputVal, setPastSalaryInputVal] = useState("");
 
-  const handleSubmit = () => {
-    // TODO: put into S3
+  const handleSubmit = async () => {
+    const userInputData = {
+      "jobInputVal": jobInputVal,
+      "yearsInputVal": yearsInputVal,
+      "skillInputVal": skillInputVal,
+      "salaryInputVal": salaryInputVal,
+      "stateInputVal": stateInputVal,
+      "pastSalaryInputVal":pastSalaryInputVal,
+    };
+
+    try {
+      const response = await axios.post("http://127.0.0.1:5000/s3_user_upload", userInputData, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+    } catch (error) {
+      console.error("Error uploading data:", error);
+      alert("Failed to upload data.");
+    }
+    
     alert(`Input Value: ${jobInputVal + yearsInputVal + skillInputVal + salaryInputVal + stateInputVal + pastSalaryInputVal}`); 
+  };
+
+  // TODO: move to new page
+  const [userData, setUserData] = useState(null);
+  const getUserData = async () => {
+    const userInputData = {
+      "jobInputVal": jobInputVal,
+      "yearsInputVal": yearsInputVal,
+      "skillInputVal": skillInputVal,
+      "salaryInputVal": salaryInputVal,
+      "stateInputVal": stateInputVal,
+      "pastSalaryInputVal":pastSalaryInputVal,
+    };
+
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/s3_user_read");
+      setUserData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      alert("Failed to fetch data.");
+    }
+    
+    alert(`Input Value: ${userData["jobInputVal"]}`); 
   };
 
   return <div className="EnterInfo">
