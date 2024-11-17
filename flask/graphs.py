@@ -7,13 +7,39 @@ matplotlib.use('Agg')  # Use non-interactive backend
 
 app = Flask(__name__)
 
-@app.route('/plot')
+@app.route('/line_graph')
 def plot_graph():
-    # Create a Matplotlib graph
-    plt.figure(figsize=(6, 4))
-    plt.plot([1, 2, 3, 4], [10, 20, 25, 30], label="Line 1")
-    plt.xlabel("X-axis")
-    plt.ylabel("Y-axis")
+    # LINE GRAPH
+    fig, ax = plt.subplots()
+
+    # Make background black
+    fig.patch.set_facecolor('black')
+    ax.set_facecolor('black')
+
+    # Set plot titles
+    ax.set_title('Awesome Trends', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold'})
+    ax.set_xlabel('X Axis', color='white') 
+    ax.set_ylabel('Y Axis', color='white')
+
+    # Change axis colors
+    ax.tick_params(axis='both', colors='white')
+    ax.xaxis.label.set_color('white')
+    ax.yaxis.label.set_color('white')
+
+    ax.spines['top'].set_color('white')
+    ax.spines['top'].set_linewidth(2)
+    ax.spines['right'].set_color('white')
+    ax.spines['right'].set_linewidth(2)
+    ax.spines['left'].set_color('white')
+    ax.spines['left'].set_linewidth(2)
+    ax.spines['bottom'].set_color('white')
+    ax.spines['bottom'].set_linewidth(2)
+
+    ax.grid(color='white')
+
+    # Plot data
+    ax.plot([1, 2, 3, 4], [1, 4, 9, 16], color='#AFE692', linewidth = 3, label="data1")
+    ax.plot([1, 2, 3, 4], [1, 8, 3, 15], color='#E69292', linewidth = 3, label="data2")
     plt.legend()
 
     # Save plot to a BytesIO object
