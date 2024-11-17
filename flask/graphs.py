@@ -76,6 +76,14 @@ def bar_graph():
     median = float(jobSalaryData["Median"])
     pct75 = float(jobSalaryData["Pct75"])
     pct90 = float(jobSalaryData["Pct90"])
+
+    # Convert api values to data
+    y = [pct10, pct25, median, pct75, pct90, contactPay]
+    x = [1, 2, 3, 4, 5, 6]
+    labels = ["pct10", "pct25", "median", "pct75", "pct90", "contract"]
+
+    if(jobSalaryData["RateType"] == "Annual"):
+        y = [curY / 2080 for curY in y[:-1]] + [y[-1]] # divide by 40 hours * 52 week
         
     # BAR GRAPH
     fig, ax = plt.subplots()
@@ -104,11 +112,6 @@ def bar_graph():
     ax.spines['bottom'].set_linewidth(2)
 
     ax.grid(color='white')
-
-    # Convert api values to data
-    y = [pct10, pct25, median, pct75, pct90, contactPay]
-    x = [1, 2, 3, 4, 5, 6]
-    labels = ["pct10", "pct25", "median", "pct75", "pct90", "contract"]
 
     # Plot bar graph
     bars = ax.bar(x, y, color='#AFE692', width=0.3, align='center')
