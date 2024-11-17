@@ -1,9 +1,11 @@
 import './App.css';
+import React, { useState } from "react";
+import { useNavigate } from 'react-router-dom';
+import axios from "axios";
+
 import NavBar from './Components/Navbar';
 import BottomBanner from './Components/BottomBanner';
 import sidePencilImg from './Assets/Home/logo stretch.png'
-import React, { useState } from "react";
-import axios from "axios";
 
 function SidePencil() {
   return (
@@ -12,6 +14,8 @@ function SidePencil() {
 }
 
 function EnterInfo() {
+  const navigate = useNavigate();
+
   const [jobInputVal, setJobInputVal] = useState("");
   const [yearsInputVal, setYearsInputVal] = useState("");
   const [skillInputVal, setSkillInputVal] = useState("");
@@ -20,6 +24,7 @@ function EnterInfo() {
   const [pastSalaryInputVal, setPastSalaryInputVal] = useState("");
 
   const handleSubmit = async () => {
+    // Save data in S3
     const userInputData = {
       "jobInputVal": jobInputVal,
       "yearsInputVal": yearsInputVal,
@@ -39,6 +44,9 @@ function EnterInfo() {
       console.error("Error uploading data:", error);
       alert("Failed to upload data.");
     }
+
+    // Navigate to next page
+    navigate('/dashboard')
   };
 
   return <div className="EnterInfo">

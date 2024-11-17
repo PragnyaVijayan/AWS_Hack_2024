@@ -1,5 +1,7 @@
 // import React.
 import './App.css';
+import { useNavigate } from 'react-router-dom';
+
 import NavBar from './Components/Navbar';
 import BottomBanner from './Components/BottomBanner';
 import paperImg from './Assets/Home/paper graphics.png';
@@ -19,6 +21,8 @@ function Header() {
 }
 
 function WhatsAscend(){
+  const navigate = useNavigate();
+
   return <div className="WhatsAscend">
     <div className="WhatsAscendBox">
       <h1>What's Ascend?</h1>
@@ -29,7 +33,7 @@ function WhatsAscend(){
       Just enter a few characters and a copy of your contract. Try it now.
       </p>
 
-      <button>Ascend</button>
+      <button onClick={() => {navigate('/enterinfo')}}>Ascend</button>
     </div>
   </div>;
 }
@@ -90,7 +94,7 @@ function SidePencil() {
   );
 }
 
-function App() {
+function HomePage() {
   return (
     <div className="App">
       <NavBar />
@@ -103,5 +107,5 @@ function App() {
   );
 }
 
-export default App;
+export default HomePage;
 

@@ -1,15 +1,17 @@
 import './App.css';
 import React, { useEffect, useState } from 'react';
-import NavBar from './Components/Navbar';
-import BottomBanner from './Components/BottomBanner';
-import sidePencilImg from './Assets/Home/logo stretch.png';
+import { useNavigate } from 'react-router-dom';
 import axios from "axios";
 
+import NavBar from './Components/Navbar';
+import BottomBanner from './Components/BottomBanner';
+
 function ContractHighlights() {
+  const navigate = useNavigate();
   return <div className="ContractHighlights">
     {/* TODO: get data from S3 */}
     <h1>UX Writer and Content Designer</h1>
-    <button>Edit</button>
+    <button onClick={() => navigate('/enterinfo')}>Edit</button>
     <h2>Boa Constrictor & Company</h2>
 
     <div className="AnnualSalary">

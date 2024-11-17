@@ -4,9 +4,9 @@ import logo from '../Assets/Logo.png';
 const NavBar = () => {
   return <div className="Bar">
     <img className="NavbarLogo" src={logo} alt="logo" />
-    <a className="NavbarItem">Dashboard</a>
-    <a className="NavbarItem">New</a>
-    <a className="NavbarItem">About</a>
+    <a href="/dashboard" className="NavbarItem">Dashboard</a>
+    <a href="/enterinfo" className="NavbarItem">New</a>
+    <a href="/" className="NavbarItem">About</a>
   </div>;
 }
 
