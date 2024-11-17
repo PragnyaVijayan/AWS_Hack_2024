@@ -393,11 +393,61 @@ button:hover {
   color: white;
   font-weight: 700;
   font-size: 45px;
-  display: inline-block;
   margin: 0px;
   display: block;
 }
 
 .AnalyticsGraphs p{
   color: white;
+}
+
+.ContractMainPoints{
+  padding: 0px 200px;
+  margin: 75px 0px;
+}
+
+.ContractMainPoints h1, .NegotiationPointsContainer h1 {
+  display: inline-block;
+  color: white;
+  font-weight: 700;
+  font-size: 45px;
+  margin-right: 20px;
+}
+
+.Points{
+  z-index: 2;
+  border: 10px solid white;
+  padding: 0px 25px;
+  text-align: left;
+  display: block;
+}
+
+.Points ul{
+  color: white;
+  font-weight: 500;
+  font-size: 35px;
+}
+
+.NegotiationPointsContainer {
+  margin: 75px 200px;
+}
+.NegotiationPoints {
+  display: grid;
+  border: 10px solid white;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0;
+}
+
+.grid-item {
+  padding: 20px; 
+  text-align: left;
+  border-left: 10px solid white; 
+  color: white;
+  font-weight: 500;
+  font-size: 35px;
+}
+
+/* Remove border for the first column */
+.grid-item:nth-child(2n+1) {
+  border-left: none;
 }
