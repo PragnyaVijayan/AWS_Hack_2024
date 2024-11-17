@@ -3,13 +3,7 @@ import './App.css';
 import logo from './Assets/Logo.png';
 import paperImg from './Assets/Home/paper graphics.png';
 import pencilImg from './Assets/Home/sharp ver.png';
-
-
-// class navBar extends React.Component {
-//   render(){
-//     return <div className="Bar"></div>
-//   };
-// }
+import capyImg from './Assets/Home/capy.png';
 
 function NavBar() {
   return <div className="Bar">
@@ -47,6 +41,56 @@ function WhatsAscend(){
   </div>;
 }
 
+function Creators(){
+  return <div className="Creators">
+    <div className="CreatorsBox">
+      <h1>Who made this?</h1>
+      <div className = "CreatorsList">
+        <CreatorCard 
+          image={capyImg}
+          name="Pragnya Vijayan"
+          role="backend"
+        />
+        <CreatorCard 
+          image={capyImg}
+          name="Tiffany Nguyen"
+          role="frontend/backend"
+        />
+        <CreatorCard 
+          image={capyImg}
+          name="Lydia Martin"
+          role="backend"
+        />
+        <CreatorCard 
+          image={capyImg}
+          name="Lindsey Leong"
+          role="design"
+        />
+        <CreatorCard 
+          image={capyImg}
+          name="Maddie Follosco"
+          role="backend"
+        />
+        <CreatorCard 
+          image={capyImg}
+          name="Irene Chang"
+          role="backend"
+        />
+      </div>
+    </div>
+  </div>;
+}
+
+function CreatorCard({ image, name, role }) {
+  return (
+    <div className="CreatorCard">
+      <img src={image} />
+      <h1>{name}</h1>
+      <h2>{role}</h2>
+    </div>
+  );
+}
+
 
 function App() {
   return (
@@ -54,6 +98,7 @@ function App() {
       <NavBar />
       <Header />
       <WhatsAscend />
+      <Creators />
     </div>
   );
 }

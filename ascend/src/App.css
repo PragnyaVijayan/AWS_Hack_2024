@@ -119,24 +119,25 @@ button:hover {
 }
 
 /* What's Ascend */
-.WhatsAscendBox{
-  margin-top: 100px;;
-  position: absolute;
-  top: 550px;
-  left: 100px;
-  right: 100px;
-  /* height: 2000px; */
+.WhatsAscendBox {
+  margin-top: 100px; 
+  margin-left: auto;
+  margin-right: auto;
   z-index: 2;
   border: 10px solid white;
   border-bottom: none;
   padding: 50px;
+  max-width: 80%; 
+  text-align: left;
+  display: block;
 }
 
-.WhatsAscendBox h1 {
+
+.WhatsAscendBox h1, .CreatorsBox h1 {
   color: black;
   background-color: white;
   margin: 0px;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
   padding: 20px;
   display: inline-block;
   font-weight: 700;
@@ -149,4 +150,74 @@ button:hover {
   margin-bottom: 50px;
   font-weight: 700;
   font-size: 55px;
+}
+
+/* Who made this? */
+.Creators {
+  background-color: #003233;
+  margin: 0px;
+  padding-bottom: 75px;
+}
+
+.CreatorsBox {
+  margin-top: 0px; 
+  margin-left: auto;
+  margin-right: auto;
+  z-index: 2;
+  border: 10px solid white;
+  border-top: none;
+  padding: 50px;
+  max-width: 80%; 
+  text-align: left;
+  display: block;
+  padding-bottom: 75px;
+}
+
+.CreatorsList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(2, 1fr);  
+  gap: 10px; 
+  row-gap: 50px;
+}
+
+.CreatorCard{
+  margin: 5px;
+  display: grid;
+  justify-items: center;
+  grid-template-rows: 250px auto auto;
+}
+
+.CreatorCard img{
+  height:100%;
+  width: auto;
+}
+
+.CreatorCard h1{
+  background-color: transparent;
+  color: white;
+  font-weight: 700;
+  font-size: 45px;
+  margin: 0px;
+  text-align: center;
+  padding: 10px;
+}
+
+.CreatorCard h2{
+  background-color: transparent;
+  color: white;
+  font-weight: 500;
+  font-size: 35px;
+  margin: 0px;
+  margin-top: 10px;
+}
+
+@media (max-width: 1485px) {
+  .CreatorsList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);  
+    gap: 10px; 
+    row-gap: 75px;
+  }
 }
