@@ -8,11 +8,29 @@ import BottomBanner from './Components/BottomBanner';
 
 function ContractHighlights() {
   const navigate = useNavigate();
-  return <div className="ContractHighlights">
-    {/* TODO: get data from S3 */}
-    <h1>UX Writer and Content Designer</h1>
+
+  // Get Data from S3
+  const [userData, setUserData] = useState(null);
+
+  const fetchData = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/s3_user_read");
+      setUserData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      // alert("Failed to fetch data.");
+    }
+  };
+
+  // UseEffect to call fetchData when the component mounts
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  return <div className="ContractHighlights">    
+    <h1>{userData?userData["jobInputVal"]:"UX Writer and Content Designer"}</h1>
     <button onClick={() => navigate('/enterinfo')}>Edit</button>
-    <h2>Boa Constrictor & Company</h2>
+    <h2>{userData?userData["skillInputVal"] : "Boa Constrictor & Company"}</h2>
 
     <div className="AnnualSalary">
       <div className="AnnualSalaryPopup">
@@ -37,36 +55,42 @@ const AnalyticsGraphs = () => {
   // Get user data --> TODO: move?
   const [userData, setUserData] = useState(null);
 
+  // Get User input data
   const getUserData = async () => {
     try {
       const response = await axios.get("http://127.0.0.1:5000/s3_user_read");
       setUserData(response.data);
     } catch (error) {
       console.error("Error fetching data:", error);
-      alert("Failed to fetch data.");
     }
-    
-    alert(`Input Value: ${userData["jobInputVal"]}`); 
   };
 
-  // Create graphs
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  // Get percentile graph for the user's job
   const [salaryPercentileImgUrl, setSalaryPercentileImgUrl] = useState(null);
   const [salaryTrendImgUrl, setSalaryTrendImgUrl] = useState(null);
 
-  useEffect(() => {
-    // TODO: don't hardcode endpoint and contract
+  const fetchPercentileData = async () => {
+    // TODO: don't hardcode contract
     // Get Salary Percentile from API
-    fetch('http://127.0.0.1:5001/get_salary_plot?location=CA&occupation=Data%20Scientists&contract=50')  
+    fetch(`http://127.0.0.1:5001/get_salary_plot?location=CA&occupation=${userData? userData.jobInputVal : "Data%20Scientists"}&contract=50`)
       .then((response) => response.blob()) 
       .then((blob) => {
         const url = URL.createObjectURL(blob); 
         setSalaryPercentileImgUrl(url); 
       })
       .catch((error) => console.error('Error fetching the image:', error));
-  }, []); 
+  };
 
   useEffect(() => {
-    // Get User Salary Trend from api
+    fetchPercentileData();
+  }, [userData]);
+
+  // Get user's inputed salary trend graph
+  useEffect(() => {
     fetch('http://127.0.0.1:5001/job_salary_trend?contract=50')  
     .then((response) => response.blob()) 
     .then((blob) => {

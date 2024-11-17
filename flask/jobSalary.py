@@ -18,6 +18,15 @@ def jobSalary():
   location = request.args.get('location')  
   occupation = request.args.get('occupation') 
 
+  # get closest occuptation in api
+  response = requests.get(f"http://127.0.0.1:5000/occupation?keyword={occupation}")
+  if response.status_code != 200:
+    return jsonify({"error": "Failed to get data from jobSalary"}), 500
+  if len(response.json()) == 0:
+    return jsonify({"error": "There is no corresponding occupation"}), 500
+    
+  occupation = response.json()[0]
+
   # create request url
   base_url = f"https://api.careeronestop.org/v1/comparesalaries/{os.getenv('USER_ID')}/wage"
   params = {

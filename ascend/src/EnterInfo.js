@@ -61,12 +61,12 @@ function EnterInfo() {
     <h2> years of experience.</h2>
 
     <br></br>
-    <h2>I currently work with </h2>
+    <h2>I am considering a position at </h2>
     <input type="text" value={skillInputVal} onChange={(event) => setSkillInputVal(event.target.value)} name="myInput" className="userInput skillInput" />
     <h2>.</h2>
 
     <br></br>
-    <h2>My desired salary is </h2>
+    <h2>My desired hourly salary is </h2>
     <input type="text" value={salaryInputVal} onChange={(event) => setSalaryInputVal(event.target.value)} name="myInput" className="userInput salaryInput" />
     <h2>.</h2>
 
