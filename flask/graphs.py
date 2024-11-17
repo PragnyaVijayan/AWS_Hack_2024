@@ -1,7 +1,8 @@
 import io
 import matplotlib
 import matplotlib.pyplot as plt
-from flask import Flask, send_file
+import requests
+from flask import Flask, send_file, request, jsonify
 
 matplotlib.use('Agg')  # Use non-interactive backend
 
@@ -51,9 +52,29 @@ def plot_graph():
     # Serve the image as a response
     return send_file(img, mimetype='image/png')
 
-
-@app.route('/bar_graph')
+# sample call: http://127.0.0.1:5001/get_salary_plot?location=CA&occupation=Data%20Scientists&contract=50
+@app.route('/get_salary_plot', methods=['GET'])
 def bar_graph():
+    # get query parameter
+    location = request.args.get('location')  
+    occupation = request.args.get('occupation') 
+    contactPay = float(request.args.get('contract'))
+
+    # call API to get job salary data
+    response = requests.get(f"http://127.0.0.1:5000/jobSalary?location={location}&occupation={occupation}")
+
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to get data from jobSalary"}), 500
+    
+    jobSalaryData = response.json() 
+
+    # read salary percitile data from api
+    pct10 = float(jobSalaryData["Pct10"])
+    pct25 = float(jobSalaryData["Pct25"])
+    median = float(jobSalaryData["Median"])
+    pct75 = float(jobSalaryData["Pct75"])
+    pct90 = float(jobSalaryData["Pct90"])
+        
     # BAR GRAPH
     fig, ax = plt.subplots()
 
@@ -62,9 +83,9 @@ def bar_graph():
     ax.set_facecolor('black')
 
     # Set plot titles
-    ax.set_title('Awesome Trends', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold'})
-    ax.set_xlabel('X Axis', color='white')
-    ax.set_ylabel('Y Axis', color='white')
+    ax.set_title(f'Salary for {occupation}', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold'})
+    ax.set_xlabel('Percentile', color='white', fontweight='bold')
+    ax.set_ylabel('Rate ($ per hour)', color='white', fontweight='bold')
 
     # Change axis colors
     ax.tick_params(axis='both', colors='white')
@@ -82,17 +103,18 @@ def bar_graph():
 
     ax.grid(color='white')
 
-    # Data for the bar graph
-    x = [1, 2, 3, 4]
-    y1 = [1, 4, 9, 16]
-    y2 = [1, 8, 3, 15]
+    # Convert api values to data
+    y = [pct10, pct25, median, pct75, pct90, contactPay]
+    x = [1, 2, 3, 4, 5, 6]
+    labels = ["pct10", "pct25", "median", "pct75", "pct90", "contract"]
 
-    # Plot bars for data1 and data2
-    ax.bar(x, y1, color='#27AA83', label="data1", width=0.3, align='center')
-    ax.bar([i + 0.3 for i in x], y2, color='#E69292', label="data2", width=0.3, align='center')
+    # Plot bar graph
+    bars = ax.bar(x, y, color='#AFE692', width=0.3, align='center')
+    bars[-1].set_color('#E69292') # make contract data a different color
 
-    # Add a legend
-    plt.legend()
+    # Add x labels to each bar
+    ax.set_xticks(x)
+    ax.set_xticklabels(labels, color='white', fontweight='bold')
 
     # Save plot to a BytesIO object
     img = io.BytesIO()
@@ -104,4 +126,4 @@ def bar_graph():
     return send_file(img, mimetype='image/png')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, port=5001)

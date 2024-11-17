@@ -40,6 +40,7 @@ def jobSalary():
 
   return response.json()["OccupationDetail"]["Wages"]["StateWagesList"][0]
 
+# TODO: change api to call occuptation first
 @app.route('/occupation', methods=['GET'])
 def occupation():
   # get query parameter
@@ -66,9 +67,4 @@ def occupation():
   return [occupation['OnetTitle'] for occupation in response.json()['OccupationList']]
 
 if __name__ == '__main__':
-    app.run(debug=True)
-
-
-
-
-
+    app.run(debug=True, port=5000)
