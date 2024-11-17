@@ -145,7 +145,6 @@ button:hover {
   z-index: 2;
 }
 
-/* TODO: dynamically change size */
 .HeaderText {
   position: absolute;
   top: 55%;
@@ -275,7 +274,7 @@ button:hover {
 /* Side pencil */
 .SidePencil{
   position: absolute;
-  right: 50px;
+  right: 30px;
   top: 800px;
   width: 70px;
   height: auto;

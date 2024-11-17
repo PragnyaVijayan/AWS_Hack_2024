@@ -17,7 +17,7 @@ function ContractHighlights() {
       const response = await axios.get("http://127.0.0.1:5000/s3_user_read");
       setUserData(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
       // alert("Failed to fetch data.");
     }
   };
@@ -52,7 +52,7 @@ function ContractHighlights() {
 }
 
 const AnalyticsGraphs = () => {
-  // Get user data --> TODO: move?
+  // Get user data
   const [userData, setUserData] = useState(null);
 
   // Get User input data
@@ -61,7 +61,7 @@ const AnalyticsGraphs = () => {
       const response = await axios.get("http://127.0.0.1:5000/s3_user_read");
       setUserData(response.data);
     } catch (error) {
-      console.error("Error fetching data:", error);
+      // console.error("Error fetching data:", error);
     }
   };
 
@@ -76,13 +76,13 @@ const AnalyticsGraphs = () => {
   const fetchPercentileData = async () => {
     // TODO: don't hardcode contract
     // Get Salary Percentile from API
-    fetch(`http://127.0.0.1:5001/get_salary_plot?location=CA&occupation=${userData? userData.jobInputVal : "Data%20Scientists"}&contract=50`)
+    fetch(`http://127.0.0.1:5001/get_salary_plot?location=${userData? userData.stateInputVal : "CA"}&occupation=${userData? userData.jobInputVal : "Data%20Scientists"}&contract=50`)
       .then((response) => response.blob()) 
       .then((blob) => {
         const url = URL.createObjectURL(blob); 
         setSalaryPercentileImgUrl(url); 
       })
-      .catch((error) => console.error('Error fetching the image:', error));
+      .catch((error) => alert('Error fetching the graph:', error));
   };
 
   useEffect(() => {

@@ -19,7 +19,7 @@ def plot_job_salary_trend():
     response = requests.get("http://127.0.0.1:5000/s3_user_read")
 
     if response.status_code != 200:
-        return jsonify({"error": "Failed to get data from jobSalary"}), 500
+        return jsonify({"error": "Failed to get data from s3_user_read"}), 500
     
     jobSalaryData = response.json() 
     pastJobSalaryString = jobSalaryData["pastSalaryInputVal"]
@@ -89,7 +89,7 @@ def bar_graph():
     response = requests.get(f"http://127.0.0.1:5000/jobSalary?location={location}&occupation={occupation}")
 
     if response.status_code != 200:
-        return jsonify({"error": "Failed to get data from jobSalary"}), 500
+        return jsonify({"error": "No salary data could be found for the provided occuptation and location"}), 500
     
     jobSalaryData = response.json() 
 

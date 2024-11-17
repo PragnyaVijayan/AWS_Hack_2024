@@ -53,7 +53,6 @@ def jobSalary():
 
   return response.json()["OccupationDetail"]["Wages"]["StateWagesList"][0]
 
-# TODO: change api to call occuptation first
 @app.route('/occupation', methods=['GET'])
 def occupation():
   # get query parameter

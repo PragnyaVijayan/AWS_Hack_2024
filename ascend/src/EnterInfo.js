@@ -89,7 +89,7 @@ function EnterInfoPage() {
     <div className="App">
       <NavBar />
       <EnterInfo />
-      {/* TODO: add back in <SidePencil /> */}
+      <SidePencil />
       <BottomBanner />
     </div>
   );
