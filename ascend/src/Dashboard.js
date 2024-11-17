@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import NavBar from './Components/Navbar';
 import BottomBanner from './Components/BottomBanner';
 import sidePencilImg from './Assets/Home/logo stretch.png';
+import axios from "axios";
 
 function ContractHighlights() {
   return <div className="ContractHighlights">
@@ -22,24 +23,58 @@ function ContractHighlights() {
 }
 
 const AnalyticsGraphs = () => {
-  const [imageUrl, setImageUrl] = useState(null);
+  // Get user data --> TODO: move?
+  const [userData, setUserData] = useState(null);
+
+  const getUserData = async () => {
+    try {
+      const response = await axios.get("http://127.0.0.1:5000/s3_user_read");
+      setUserData(response.data);
+    } catch (error) {
+      console.error("Error fetching data:", error);
+      alert("Failed to fetch data.");
+    }
+    
+    alert(`Input Value: ${userData["jobInputVal"]}`); 
+  };
+
+  // Create graphs
+  const [salaryPercentileImgUrl, setSalaryPercentileImgUrl] = useState(null);
+  const [salaryTrendImgUrl, setSalaryTrendImgUrl] = useState(null);
 
   useEffect(() => {
-    // TODO: don't hardcode endpoint
+    // TODO: don't hardcode endpoint and contract
+    // Get Salary Percentile from API
     fetch('http://127.0.0.1:5001/get_salary_plot?location=CA&occupation=Data%20Scientists&contract=50')  
       .then((response) => response.blob()) 
       .then((blob) => {
         const url = URL.createObjectURL(blob); 
-        setImageUrl(url); 
+        setSalaryPercentileImgUrl(url); 
       })
       .catch((error) => console.error('Error fetching the image:', error));
+  }, []); 
+
+  useEffect(() => {
+    // Get User Salary Trend from api
+    fetch('http://127.0.0.1:5001/job_salary_trend?contract=50')  
+    .then((response) => response.blob()) 
+    .then((blob) => {
+      const url = URL.createObjectURL(blob); 
+      setSalaryTrendImgUrl(url); 
+    })
+    .catch((error) => console.error('Error fetching the image:', error));
   }, []); 
 
   return (
     <div className="AnalyticsGraphs">
       {/* <h1>Graphs:</h1> */}
-      {imageUrl ? (
-        <img src={imageUrl} alt="Graph" />
+      {salaryPercentileImgUrl ? (
+        <img src={salaryPercentileImgUrl} alt="Graph" />
+      ) : (
+        <p>Loading...</p> 
+      )}
+      {salaryTrendImgUrl ? (
+        <img src={salaryTrendImgUrl} alt="Graph" />
       ) : (
         <p>Loading...</p> 
       )}

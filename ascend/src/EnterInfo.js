@@ -39,31 +39,6 @@ function EnterInfo() {
       console.error("Error uploading data:", error);
       alert("Failed to upload data.");
     }
-    
-    alert(`Input Value: ${jobInputVal + yearsInputVal + skillInputVal + salaryInputVal + stateInputVal + pastSalaryInputVal}`); 
-  };
-
-  // TODO: move to new page
-  const [userData, setUserData] = useState(null);
-  const getUserData = async () => {
-    const userInputData = {
-      "jobInputVal": jobInputVal,
-      "yearsInputVal": yearsInputVal,
-      "skillInputVal": skillInputVal,
-      "salaryInputVal": salaryInputVal,
-      "stateInputVal": stateInputVal,
-      "pastSalaryInputVal":pastSalaryInputVal,
-    };
-
-    try {
-      const response = await axios.get("http://127.0.0.1:5000/s3_user_read");
-      setUserData(response.data);
-    } catch (error) {
-      console.error("Error fetching data:", error);
-      alert("Failed to fetch data.");
-    }
-    
-    alert(`Input Value: ${userData["jobInputVal"]}`); 
   };
 
   return <div className="EnterInfo">

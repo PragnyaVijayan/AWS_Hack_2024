@@ -10,9 +10,23 @@ matplotlib.use('Agg')  # Use non-interactive backend
 app = Flask(__name__)
 CORS(app)
 
-@app.route('/line_graph')
-def plot_graph():
-    # LINE GRAPH
+@app.route('/job_salary_trend', methods=['GET'])
+def plot_job_salary_trend():
+    # get query parameter
+    contactPay = float(request.args.get('contract'))
+
+    # call API to get user past job salary
+    response = requests.get("http://127.0.0.1:5000/s3_user_read")
+
+    if response.status_code != 200:
+        return jsonify({"error": "Failed to get data from jobSalary"}), 500
+    
+    jobSalaryData = response.json() 
+    pastJobSalaryString = jobSalaryData["pastSalaryInputVal"]
+    pastJobSalary = [float(num.strip()) for num in pastJobSalaryString.split(",")] # convert string to array
+    pastJobSalary.append(contactPay) # Add new job pay
+
+    # Make graph
     fig, ax = plt.subplots()
 
     # Make background black
@@ -20,9 +34,9 @@ def plot_graph():
     ax.set_facecolor('black')
 
     # Set plot titles
-    ax.set_title('Awesome Trends', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold', 'family': 'arial'})
-    ax.set_xlabel('X Axis', color='white') 
-    ax.set_ylabel('Y Axis', color='white')
+    ax.set_title('Your Salary Trend', color='white', fontdict={'fontsize': 20, 'fontweight': 'bold', 'family': 'arial'})
+    ax.set_xlabel('Job Number', color='white', fontweight='bold') 
+    ax.set_ylabel('Salary ($ per hour)', color='white', fontweight='bold')
 
     # Change axis colors
     ax.tick_params(axis='both', colors='white')
@@ -41,9 +55,18 @@ def plot_graph():
     ax.grid(color='white')
 
     # Plot data
-    ax.plot([1, 2, 3, 4], [1, 4, 9, 16], color='#AFE692', linewidth = 3, label="data1")
-    ax.plot([1, 2, 3, 4], [1, 8, 3, 15], color='#E69292', linewidth = 3, label="data2")
-    plt.legend()
+    x = list(range(1, len(pastJobSalary) + 1))
+    ax.plot(x, pastJobSalary, "o-", color='#AFE692', linewidth = 3, markersize=8)
+
+    # Label last point (new contract)
+    ax.annotate('New',
+        xy=(x[-1], pastJobSalary[-1]), 
+        xytext=(x[-1], pastJobSalary[-1] + 1.5),
+        textcoords='data',
+        fontsize=14, color='white',
+        fontweight='bold', 
+        ha='center', va='bottom',
+        bbox=dict(facecolor='#E69292', alpha=1, boxstyle="round,pad=0.3")) 
 
     # Save plot to a BytesIO object
     img = io.BytesIO()
