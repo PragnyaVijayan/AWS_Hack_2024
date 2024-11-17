@@ -27,10 +27,10 @@ function WhatsAscend(){
     <div className="WhatsAscendBox">
       <h1>What's Ascend?</h1>
       <p>
-      Ascend is an on-demand contract negotiator that makes it easy to get the conditions you deserve.
-      <br></br>
-      <br></br>
-      Just enter a few characters and a copy of your contract. Try it now.
+        Ascend is an on-demand contract negotiator that makes it easy to get the conditions you deserve.
+        <br></br>
+        <br></br>
+        Just enter a few characters and a copy of your contract. Try it now. 
       </p>
 
       <button onClick={() => {navigate('/enterinfo')}}>Ascend</button>

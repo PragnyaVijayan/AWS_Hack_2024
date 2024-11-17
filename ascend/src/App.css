@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Inknut+Antiqua:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Overall App */
+/* OVERALL APP */
 body {
   background-color: black;
   margin: 0; 
@@ -112,6 +112,7 @@ button:hover {
   text-align: center;
   margin: 0px;
 }
+
 /* HOME PAGE */
 
 /* Header */
@@ -380,6 +381,14 @@ button:hover {
   align-items: center; 
 }
 
+.AnnualSalaryPopup{
+  display: flex;
+  flex-direction: row;
+  align-items: center; 
+  gap: 75px;
+  margin-bottom: 75px;
+}
+
 .AnnualSalary h1{
   display: block;
   font-weight: 800;
@@ -387,6 +396,8 @@ button:hover {
 }
 
 .AnnualSalary h2{
+  text-align: center;
+  width: 100%;
   color: white;
   font-weight: 700;
   font-size: 45px;
@@ -395,11 +406,36 @@ button:hover {
   margin-bottom: 35px;
 }
 
+.AnnualSalary h3{
+  color: white;
+  font-weight: 700;
+  font-size: 80px;
+  display: block;
+  margin: 0px;
+  margin-bottom: 0px;
+  text-align: center;
+}
+
+.AnnualSalary h4{
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  font-size: 40px;
+  display: inline-block;
+  margin: 0px;
+  margin-bottom: 35px;
+  width: 300px;
+}
+
 .AnnualSalary p{
   color: white;
   font-weight: 500;
   font-size: 35px;
   margin: 15px 0px;
+}
+
+.AnnualSalaryPopupLeft, .AnnualSalaryPopupRight{
+  transform: translateY(100px);
 }
 
 .lowlight{

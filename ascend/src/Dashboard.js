@@ -15,8 +15,17 @@ function ContractHighlights() {
     <h2>Boa Constrictor & Company</h2>
 
     <div className="AnnualSalary">
-      <h1>$96k</h1>
-      <h2>annual salary</h2>
+      <div className="AnnualSalaryPopup">
+        <h4 className="AnnualSalaryPopupLeft">paid leave and dental medical covered</h4>
+        <div>
+          <h1>$96k</h1>
+          <h2>annual salary</h2>
+        </div>
+        <div className="AnnualSalaryPopupRight">
+        <h3>$32k</h3>
+        <h4>sign-on bonus</h4>
+        </div>
+      </div>
       <p><span className="lowlight">9% lower salary</span> than average</p>
       <p><span className="highlight">210% higher sign-on bonus</span> than average</p>
       <p><span className="lowlight">car insurance not included</span></p>
