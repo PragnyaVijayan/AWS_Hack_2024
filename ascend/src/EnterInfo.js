@@ -45,18 +45,17 @@ function EnterInfo() {
       });
     } catch (error) {
       console.error("Error uploading data:", error);
-      alert("Failed to upload data.");
+      // alert("Failed to upload data.");
     }
 
     await controlUpload();
+    // TODO: display loading message
 
-    // Navigate to next page TODO
-    // navigate('/dashboard')
+    navigate('/dashboard')
   };
 
   // CONTRACT UPLOAD: State to store uploaded file
   const [selectedFile, setSelectedFile] = useState(null);
-  const [summaries, setSummary] = useState("");
 
   const handleFileChange = (event) => {
     setSelectedFile(event.target.files[0])
@@ -77,10 +76,9 @@ function EnterInfo() {
           'Content-Type': "multipart/form-data",
         },
       });
-      setSummary(res.data.summaries);
     } catch(error) {
       console.error("Error", error);
-      alert("An error occurred while uploading the file");
+      // alert("An error occurred while uploading the file");
     }
   };
 
@@ -140,17 +138,6 @@ function EnterInfo() {
               </div>
               <br/>
               <br/>
-              {Object.keys(summaries).length > 0 && (
-                <div>
-                  <h3>Summary:</h3>
-                  {Object.keys(summaries).map(([section, summary]) => (
-                    <div key={section}>
-                      <h4>{section}</h4>
-                      <p>{summary}</p>
-                    </div>
-                  ))}
-                </div>
-              )}
             </div>
         </div>
     </div>

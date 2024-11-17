@@ -118,21 +118,49 @@ const AnalyticsGraphs = () => {
 };
 
 function ContractMainPoints() {
-  // TODO: get actual points
-  const points = ["5 years of work guaranteed", "NDA required", "Covers both family dental and health insurance.",
-    "Required relocation to Antarctica", "The soul of your first newborn son required", "Not responsible for death, injury, or illness"];
-  
-  return <div className="ContractMainPoints">
-    <h1>Contract Verdict:</h1>
-    <h1>not good</h1>
-    <div className="Points">
-      <ul>
-        {points.map((curPoint, index) => (
-          <li key={index}>{curPoint}</li> // Use key for each list item
-        ))}
-      </ul>
+  const [points, setPoints] = useState([]);
+
+  // Convert the text to an array of sentences
+  function convertToList(text) {
+    const sentences = text.split('.').map(sentence => sentence.trim()).filter(Boolean);
+    return sentences;
+  }
+
+  // Fetch the contract summary
+  const fetchContractSummary = async () => {
+    try {
+      const response = await fetch('http://127.0.0.1:5003/read_contract_summary');
+      const data = await response.json(); // Parse the response body as JSON
+
+      // Parse summary data
+      const servicesList = convertToList(data.services);
+      const milestonesList = convertToList(data.milestones);
+
+      // Merge the two lists and set the points state
+      setPoints([...servicesList, ...milestonesList]); // Using spread operator to combine both arrays
+    } catch (error) {
+      alert('Error fetching summary:', error);
+    }
+  };
+
+  // Fetch contract summary when the component is mounted
+  useEffect(() => {
+    fetchContractSummary();
+  }, []);
+
+  return (
+    <div className="ContractMainPoints">
+      <h1>Contract Verdict:</h1>
+      <h1>not good</h1>
+      <div className="Points">
+        <ul>
+          {points.map((curPoint, index) => (
+            <li key={index}>{curPoint}</li> // Use key for each list item
+          ))}
+        </ul>
+      </div>
     </div>
-  </div>;
+  );
 }
 
 function NegotiationPoints() {
