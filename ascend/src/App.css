@@ -294,6 +294,7 @@ button:hover {
 .EnterInfo {
   margin-top: 69px;
   padding: 75px;
+  padding-left: 100px;
   background-image: linear-gradient(to bottom, #003839, black);
 }
 
@@ -344,6 +345,7 @@ button:hover {
   float: right;
   margin: 0px 50px 50px 0px;
 }
+
 /* DASHBOARD PAGE */
 .ContractHighlights{
   margin-top: 69px;

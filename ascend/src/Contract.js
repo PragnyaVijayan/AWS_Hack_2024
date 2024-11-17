@@ -27,7 +27,7 @@ function Contract() {
     fd.append('file', selectedFile);
 
     try {
-      const res = await axios.post("http://127.0.0.1:5000/summarize", fd, {
+      const res = await axios.post("http://127.0.0.1:5003/summarize", fd, {
         headers: {
           'Content-Type': "multipart/form-data",
         },

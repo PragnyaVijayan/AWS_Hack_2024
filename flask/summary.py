@@ -34,11 +34,11 @@ def extract_sections(text):
         sections[heading] = content
     return sections
 
-def summarize_text(text, max_length=400):
+def summarize_text(text, max_length=50):
     """
     Summarize text using the summarization pipeline.
     """
-    summary = summarizer(text, max_length=max_length, min_length=50, do_sample=False)
+    summary = summarizer(text, max_length=max_length, min_length=40, do_sample=False)
     return summary[0]['summary_text']
 
 @app.route("/summarize", methods=["POST"])
@@ -51,7 +51,10 @@ def summarize_contract():
 
     file = request.files["file"]
 
+    print("trying 1")
+
     try:
+        print("trying")
         # Extract text from PDF
         text = extract_text_from_pdf(file)
         
@@ -63,9 +66,10 @@ def summarize_contract():
         for heading, content in sections.items():
             summaries[heading] = summarize_text(content)
 
+        print(summaries)
         return jsonify({"summaries": summaries})
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5002)
+    app.run(debug=True, port=5003)

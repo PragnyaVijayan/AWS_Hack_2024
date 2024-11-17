@@ -48,8 +48,40 @@ function EnterInfo() {
       alert("Failed to upload data.");
     }
 
-    // Navigate to next page
-    navigate('/dashboard')
+    await controlUpload();
+
+    // Navigate to next page TODO
+    // navigate('/dashboard')
+  };
+
+  // CONTRACT UPLOAD: State to store uploaded file
+  const [selectedFile, setSelectedFile] = useState(null);
+  const [summaries, setSummary] = useState("");
+
+  const handleFileChange = (event) => {
+    setSelectedFile(event.target.files[0])
+  }
+
+  const controlUpload = async () => {
+    if(!selectedFile) {
+      alert("Please select a file to upload");
+      return;
+    }
+
+    const fd = new FormData();
+    fd.append('file', selectedFile);
+
+    try {
+      const res = await axios.post("http://127.0.0.1:5003/summarize", fd, {
+        headers: {
+          'Content-Type': "multipart/form-data",
+        },
+      });
+      setSummary(res.data.summaries);
+    } catch(error) {
+      console.error("Error", error);
+      alert("An error occurred while uploading the file");
+    }
   };
 
   return <div className="EnterInfo">
@@ -83,52 +115,8 @@ function EnterInfo() {
     <input type="text" value={pastSalaryInputVal} onChange={(event) => setPastSalaryInputVal(event.target.value)} name="myInput" className="userInput pastSalaryInput" />
     <h2>.</h2>
 
-    <Contract />
-
-    <button onClick={handleSubmit} className="ContinueBtn">Continue</button>
-  </div>;
-}
-
-
-
-function Contract() {
-  
-  // State to store uploaded file
-  const [selectedFile, setSelectedFile] = useState(null);
-  const [summaries, setSummary] = useState("");
-
-  // function controlChange(e) {
-  //   setSelectedFile(URL.createObjectURL(e.target.files[0]));
-  // }
-
-  const handleFileChange = (event) => {
-    setSelectedFile(event.target.files[0])
-  }
-
-  const controlUpload = async () => {
-    if(!selectedFile) {
-      alert("Please select a file to upload");
-      return;
-    }
-
-    const fd = new FormData();
-    fd.append('file', selectedFile);
-
-    try {
-      const res = await axios.post("http://127.0.0.1:5000/summarize", fd, {
-        headers: {
-          'Content-Type': "multipart/form-data",
-        },
-      });
-      setSummary(res.data.summaries);
-    } catch(error) {
-      console.error("Error", error);
-      alert("An error occurred while uploading the file");
-    }
-  };
-
-  return (
-    <div className="App">
+    {/* Contract */}
+    <div className="ContractApp">
       <header className="contract-text">
         <h2>
           <p>Finally,</p>
@@ -136,7 +124,7 @@ function Contract() {
         </h2>
       </header>
         <div className='contract-visual'>
-          <img id = "upload_img" src={upload} alt="upload"/>
+         <img id="upload_img" src={upload} alt="upload" className="uploadIcon"/>
             <br/>
             <br/>
             <div className='file_upload_container'>
@@ -152,9 +140,6 @@ function Contract() {
               </div>
               <br/>
               <br/>
-              <button id="update_button" onClick = { controlUpload }>
-                <b>Update</b>
-              </button> 
               {Object.keys(summaries).length > 0 && (
                 <div>
                   <h3>Summary:</h3>
@@ -169,7 +154,9 @@ function Contract() {
             </div>
         </div>
     </div>
-  );
+
+    <button onClick={handleSubmit} className="ContinueBtn">Continue</button>
+  </div>;
 }
 
 function EnterInfoPage() {

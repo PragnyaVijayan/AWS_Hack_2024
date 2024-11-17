@@ -1,17 +1,24 @@
-.App {
-  /* text-align: center; */
+.ContractApp {
+  text-align: center;
+  font-family: 'Host Grotesk', sans-serif;
+}
+
+.App{
   font-family: 'Host Grotesk', sans-serif;
 }
 
 .contract-text {
   text-align: left;
-  padding-left: 5%;
+  /* padding-left: 5%; */
   font-size: calc(10px + 2vmin);
   color: white;
 }
+
 .contract-visuals {
-  text-align: center;
-  justify-content: center;
+  display: flex;             /* Enable flexbox layout */
+  justify-content: center;   /* Centers items horizontally */
+  align-items: center;       /* Centers items vertically */
+  height: 100%;
 } 
 
 .file_upload_container {
@@ -52,6 +59,7 @@
 } */
 
 #upload_img {
+  /* display: inline-block; */
   height: 127px;
   width: 136px;
 }
